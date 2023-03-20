@@ -24,13 +24,17 @@ left = right = (img2.shape[1] - mitad_tam.shape[1]) // 2
 # Agregar borde blanco a la imagen reducida
 bordered = cv2.copyMakeBorder(mitad_tam, top, bottom, left, right, cv2.BORDER_CONSTANT, value=[255, 255, 255])
 
+# Agregar borde blanco a la imagen reducida
+borderedr = cv2.copyMakeBorder(bordered, top, bottom, left, right, cv2.BORDER_CONSTANT, value=[255, 255, 255])
+
 # Voltear la imagen
 flipped_image = cv2.flip(img2, 1)
 
 # DB a la imagen, pd la segunda la añadi solo por el toc no ver eso imcompleto :V, lo sineto me gana el toc :,V
 db = np.array([[-1,-1,-1],[-1,8,-1],[-1,-1,-1]])
-img_db = cv2.filter2D(img2,-1,db)
+img_db = cv2.filter2D(borderedr,-1,db)
 img_dbi = cv2.filter2D(flipped_image,-1,db)
+
 
 # Creacion y asignacion en la figura
 fig, axs = plt.subplots(nrows = 3, ncols = 2, figsize = (8, 8))
