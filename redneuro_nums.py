@@ -26,6 +26,7 @@ for number in numeros_prueba:
             #guardar = str(num)+".jpg"
             img_numero = img[ini_ver:fin_ver, ini_hor:fin_hor].copy()
             img_numero = cv2.resize(img_numero, (28, 28))
+            img_numero = cv2.bitwise_not(img_numero)
             imagenes.append(img_numero)
             etiquetas_imagenes.append(number)
             #cv2.imwrite(guardar ,img[ini_ver:fin_ver, ini_hor:fin_hor])
@@ -43,7 +44,7 @@ modelo = tf.keras.Sequential([
     #tf.keras.layers.Dropout(0.2),
     
     #tf.keras.layers.Dense(550, activation='relu'), 
-    #tf.keras.layers.Dropout(0.2), 
+    #tf.keras.layers.Dropout(0.2),
     
     tf.keras.layers.Dense(10)
 ])
@@ -61,7 +62,7 @@ print('Pérdida en el conjunto de prueba:', resultado[0])
 print('Precisión en el conjunto de prueba:', resultado[1])
 
 print('Real: 1')
-img_nueva = cv2.imread("1prueba.jpg", 0)
+img_nueva = cv2.imread("1-3prueba.jpg", 0)
 
 # Redimensionar la imagen a 28x28 píxeles
 img_nueva = cv2.resize(img_nueva, (28, 28))
@@ -89,7 +90,7 @@ print('El número predicho es:', numero_predicho)
 
 print('Real: 3')
 
-img_nueva = cv2.imread("4grilla.jpg", cv2.IMREAD_GRAYSCALE)
+img_nueva = cv2.imread("3prueba.jpg", 0)
 
 # Redimensionar la imagen a 28x28 píxeles
 img_nueva = cv2.resize(img_nueva, (28, 28))
